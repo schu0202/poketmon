@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pymysql
-conn = pymysql.connect(host='', user='', password='', db='', charset='utf8')
+conn = pymysql.connect(host=, user=, password=, db=, charset='utf8')
 curs = conn.cursor()
 
 pokemon = {}

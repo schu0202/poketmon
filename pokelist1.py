@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pymysql
-conn = pymysql.connect(host='', user='', password='', db='', charset='utf8')
+conn = pymysql.connect(host=, user=, password=, db=, charset='utf8')
 curs = conn.cursor()
 
 pokemon = {}
@@ -9,7 +9,6 @@ pokemonall ={}
 typeall = [] # 중복되는 타입이 있을ㅜ경우
 charaall= [] # 중복되는 특성이 있을 경우
 for i in range(1, 164):
-    except_nums=[4,8,9,4564]
     if(i == 4 or i==8 or i==9 or i==13 or i==100 or i==122 or i==161 or i==162 or i==152 or i==139 or i==135 or i==70) : #같은 번호 제외(ex 메가진화)
         pass
     else :
@@ -53,15 +52,7 @@ for i in range(1, 164):
 
     pokemonall[name1[0]] = pokemon
 
-    #print(name1[0])
-    #print('타입:',type)
-    #print('---------',name1[1]+name1[2],'----------')
-    #print('키:', height)
-    #print('몸무게:', weight.text)
-    #print(pokemonall.items())
-
 sql = 'INSERT INTO pokemon1 (NAME, type, type1, chara, height, weight, img) VALUES (%s, %s, %s, %s, %s, %s, %s)' #필드명
-    # 파이썬 딕셔너리 반복문
 
 for n, na in pokemonall.items():
     curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight'], na['img']))
@@ -70,11 +61,8 @@ conn.commit()  # 영구저장
 
 sql = "select * from pokemon1"
 curs.execute(sql)
-    # 데이타 Fetch
 
 rows = curs.fetchall()
-
-
 
 conn.close()
 

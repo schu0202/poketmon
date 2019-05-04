@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pymysql
 import schedule
 def job():
-    conn = pymysql.connect(host='', user='', password='', db='', charset='')
+    conn = pymysql.connect(host=, user=, password=, db=, charset='utf8')
     curs = conn.cursor()
 
     news = {}

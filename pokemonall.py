@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pymysql
-conn = pymysql.connect(host='', user='', password='', db='', charset='utf8')
+conn = pymysql.connect(host=, user=, password=, db=, charset='utf8')
 curs = conn.cursor()
 
 pokemon = {}
@@ -22,6 +22,7 @@ for i in range(1, 164):
     nums1 = bsObject.find("div", class_="type") # 타입
     nums2 = bsObject.find("div", class_="col-xs-6 nopd") # 키와 몸무게
     nums3 = bsObject.find_all("div", class_="col-xs-6 nopd")  # 특성과 분류
+    img1 = bsObject.find("img", class_="feature_img")
 
     name = nums.find('h1').text
     name1 = name.split(' ')
@@ -42,14 +43,20 @@ for i in range(1, 164):
         pass
     height = nums2.find('b').text # 키
 
-    pokemon = {'type': typeallF, 'type1' : type1, 'characteristic' : charaallF, 'height': height, 'weight': weight.text}
+    pokemon = {'type': typeallF,
+               'type1' : type1,
+               'characteristic' : charaallF,
+               'height': height,
+               'weight': weight.text,
+               'img' : img1.get('src')}
+
     pokemonall[name1[0]] = pokemon
 
-sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight) VALUES (%s, %s, %s, %s, %s, %s)' #필드명
+sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight, img1) VALUES (%s, %s, %s, %s, %s, %s, %s)' #필드명
     # 파이썬 딕셔너리 반복문
 
 for n, na in pokemonall.items():
-    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight']))
+    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight'], na['img']))
 
 conn.commit()  # 영구저장
 
@@ -75,6 +82,7 @@ for i in range(164, 215):
     nums1 = bsObject.find("div", class_="type") # 타입
     nums2 = bsObject.find("div", class_="col-xs-6 nopd") # 키와 몸무게
     nums3 = bsObject.find_all("div", class_="col-xs-6 nopd")  # 특성과 분류
+    img1 = bsObject.find("img", class_="feature_img")
 
     name = nums.find('h1').text
     name1 = name.split(' ')
@@ -95,14 +103,19 @@ for i in range(164, 215):
         pass
     height = nums2.find('b').text # 키
 
-    pokemon = {'type': typeallF, 'type1' : type1, 'characteristic' : charaallF, 'height': height, 'weight': weight.text}
+    pokemon = {'type': typeallF,
+               'type1' : type1,
+               'characteristic' : charaallF,
+               'height': height,
+               'weight': weight.text,
+               'img' : img1.get('src')}
     pokemonall[name1[0]] = pokemon
 
-sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight) VALUES (%s, %s, %s, %s, %s, %s)' #필드명
+sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight, img1) VALUES (%s, %s, %s, %s, %s, %s, %s)' #필드명
     # 파이썬 딕셔너리 반복문
 
 for n, na in pokemonall.items():
-    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight']))
+    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight'], na['img']))
 
 conn.commit()  # 영구저장
 
@@ -128,6 +141,7 @@ for j in range(242, 296):
     nums1 = bsObject.find("div", class_="type") # 타입
     nums2 = bsObject.find("div", class_="col-xs-6 nopd") # 키와 몸무게
     nums3 = bsObject.find_all("div", class_="col-xs-6 nopd")  # 특성과 분류
+    img1 = bsObject.find("img", class_="feature_img")
 
     name = nums.find('h1').text
     name1 = name.split(' ')
@@ -148,14 +162,20 @@ for j in range(242, 296):
         pass
     height = nums2.find('b').text # 키
 
-    pokemon = {'type': typeallF, 'type1' : type1, 'characteristic' : charaallF, 'height': height, 'weight': weight.text}
+    pokemon = {'type': typeallF,
+               'type1' : type1,
+               'characteristic' : charaallF,
+               'height': height,
+               'weight': weight.text,
+               'img' : img1.get('src')}
+
     pokemonall[name1[0]] = pokemon
 
-sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight) VALUES (%s, %s, %s, %s, %s, %s)' #필드명
+sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight, img1) VALUES (%s, %s, %s, %s, %s, %s, %s)' #필드명
     # 파이썬 딕셔너리 반복문
 
 for n, na in pokemonall.items():
-    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight']))
+    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight'], na['img']))
 
 conn.commit()  # 영구저장
 
@@ -182,6 +202,7 @@ for i in range(296, 402):
     nums1 = bsObject.find("div", class_="type") # 타입
     nums2 = bsObject.find("div", class_="col-xs-6 nopd") # 키와 몸무게
     nums3 = bsObject.find_all("div", class_="col-xs-6 nopd")  # 특성과 분류
+    img1 = bsObject.find("img", class_="feature_img")
 
     name = nums.find('h1').text
     name1 = name.split(' ')
@@ -202,15 +223,20 @@ for i in range(296, 402):
         pass
     height = nums2.find('b').text # 키
 
-    pokemon = {'type': typeallF, 'type1' : type1, 'characteristic' : charaallF, 'height': height, 'weight': weight.text}
+    pokemon = {'type': typeallF,
+               'type1' : type1,
+               'characteristic' : charaallF,
+               'height': height,
+               'weight': weight.text,
+               'img' : img1.get('src')}
     pokemonall[name1[0]] = pokemon
 
 
-sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight) VALUES (%s, %s, %s, %s, %s, %s)' #필드명
+sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight, img1) VALUES (%s, %s, %s, %s, %s, %s, %s)' #필드명
     # 파이썬 딕셔너리 반복문
 
 for n, na in pokemonall.items():
-    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight']))
+    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight'], na['img']))
 
 conn.commit()  # 영구저장
 
@@ -237,6 +263,7 @@ for i in range(405, 445):
     nums1 = bsObject.find("div", class_="type") # 타입
     nums2 = bsObject.find("div", class_="col-xs-6 nopd") # 키와 몸무게
     nums3 = bsObject.find_all("div", class_="col-xs-6 nopd")  # 특성과 분류
+    img1 = bsObject.find("img", class_="feature_img")
 
     name = nums.find('h1').text
     name1 = name.split(' ')
@@ -257,15 +284,21 @@ for i in range(405, 445):
         pass
     height = nums2.find('b').text # 키
 
-    pokemon = {'type': typeallF, 'type1' : type1, 'characteristic' : charaallF, 'height': height, 'weight': weight.text}
+    pokemon = {'type': typeallF,
+               'type1' : type1,
+               'characteristic' : charaallF,
+               'height': height,
+               'weight': weight.text,
+               'img' : img1.get('src')}
+
     pokemonall[name1[0]] = pokemon
 
 
-sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight) VALUES (%s, %s, %s, %s, %s, %s)' #필드명
+sql = 'INSERT INTO pokemonall (NAME, type, type1, chara, height, weight, img1) VALUES (%s, %s, %s, %s, %s, %s, %s)' #필드명
     # 파이썬 딕셔너리 반복문
 
 for n, na in pokemonall.items():
-    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight']))
+    curs.execute(sql, (n, na['type'], na['type1'], na['characteristic'], na['height'], na['weight'], na['img']))
 
 conn.commit()  # 영구저장
 
